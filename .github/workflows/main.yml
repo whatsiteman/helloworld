@@ -1,0 +1,75 @@
+name: CI
+
+on: 
+  push:
+    branches: [ master ]
+  repository_dispatch:
+    types: [deploy]
+        
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      
+      - name: Cache dependencies
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+            
+      - name: npm install and build
+        run: | 
+          npm install
+          PREFIX=${{github.event.repository.name}} npm run deploy 
+          
+      - name: Deploy 🚀
+        uses: peaceiris/actions-gh-pages@v3.5.6
+        with:
+          # Set a SSH private key from repository secret value for pushing to the remote branch.
+          #deploy_key: # optional
+          # Set a generated GITHUB_TOKEN for pushing to the remote branch.
+          github_token: ${{secrets.GITHUB_TOKEN}}
+          # Set a personal access token for pushing to the remote branch.
+          #personal_token: ${{ secrets.GITHUB_TOKEN }}
+          # Set a target branch for deployment.
+          publish_branch: gh-pages
+          # Set an input directory for deployment.
+          #publish_dir: # optional, default is ./public
+          # Set an external repository (owner/repo).
+          #external_repository: nookza5000/site
+          # If empty commits should be made to the publication branch
+          #allow_empty_commit: # optional, default is false
+          # If existing files in the publish branch should be not removed before deploying
+          #keep_files: # optional, default is false
+          # Keep only the latest commit on a GitHub Pages branch
+          #force_orphan: # optional, default is false
+          # Set Git user.name
+          user_name: natdanaiw08
+          # Set Git user.email
+          user_email: natdanaiwangluang@gmail.com
+          # Set custom commit message
+          commit_message: automate deploy
+          # Set tag name
+          #tag_name: # optional
+          # Set tag message
+          #tag_message: # optional
+          # Enable the GitHub Pages built-in Jekyll
+          #enable_jekyll: # optional, default is false
+          # An alias for enable_jekyll to disable adding .nojekyll file to master or gh-pages branches
+          #disable_nojekyll: # optional, default is false
+          # Set custom domain
+          #cname: # optional
