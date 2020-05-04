@@ -22,7 +22,7 @@ module.exports = {
       // Querying to a SQLite database
       resolve: `gatsby-source-sql`,
       options: {
-        typeName: 'Setting',
+        typeName: 'setting',
         fieldName: 'setting',
         dbEngine: {
           client: 'sqlite3',
@@ -35,6 +35,14 @@ module.exports = {
           return x.select("key", "value").from("settings")
         }
       }
+    },
+    {
+      resolve: `gatsby-plugin-remote-images`,
+      options: {
+        nodeType: 'setting',
+        imagePath: 'value',
+        name: 'staticImage'
+      },
     },
     {
       resolve: `gatsby-plugin-manifest`,
