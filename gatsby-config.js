@@ -19,7 +19,6 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
-      // Querying to a SQLite database
       resolve: `gatsby-source-sql`,
       options: {
         typeName: 'setting',
@@ -41,7 +40,7 @@ module.exports = {
       options: {
         nodeType: 'setting',
         imagePath: 'value',
-        name: 'staticImage'
+        prepareUrl: url => (url.startsWith(process.env.BASE_URL) ? url : process.env.BASE_URL + "images/logo.png"),
       },
     },
     {
@@ -53,7 +52,7 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/logo.png`, // This path is relative to the root of the site.
+        icon: `src/images/logo.png`
       },
     }
   ],
