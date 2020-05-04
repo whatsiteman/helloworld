@@ -1,1 +1,1 @@
-{"componentChunkName":"component---src-pages-index-js","path":"/","result":{"data":{"allSetting":{"edges":[{"node":{"value":"สวัสดีชาวโลก","key":"title"}},{"node":{"value":"พื้นที่สร้างเว็บไซต์แบบมืออาชีพ","key":"description"}}]}},"pageContext":{}}}
+{"componentChunkName":"component---src-pages-index-js","path":"/","result":{"data":{"allSetting":{"edges":[{"node":{"value":"Hello","key":"title"}},{"node":{"value":"Created by whatsiteman","key":"description"}},{"node":{"value":"","key":"logo"}}]}},"pageContext":{}}}
