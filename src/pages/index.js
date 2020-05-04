@@ -4,18 +4,17 @@ import Layout from '../components/Layout'
 import Img from "gatsby-image"
 
 const Theme = (props) => {
-  const { allSetting, logo } = props.data;
-  let settings = allSetting.edges.reduce((a, x) => ({ ...a, [x.node.key]: x.node.value }), {})
+  const { title, description, logo } = props.data;
 
   return (
     <Layout>
       <div className="content">
-        <Img fluid={logo.staticImage.childImageSharp.fluid}  style={{ 'height': '150px', width: '150px', margin: '0 auto 24px ' }}  />
+        <Img fluid={logo.staticImage.childImageSharp.fluid} style={{ 'height': '150px', width: '150px', margin: '0 auto 24px ' }} />
         <div>
-          {settings.description}
+          {description}
         </div>
         <div className="title m-b-md">
-          {settings.title} world!
+          {title} world!
         </div>
         <div className="links">
           <Link to="/">world</Link>
@@ -29,11 +28,7 @@ const Theme = (props) => {
 }
 
 Theme.defaultProps = {
-  settings: {
-    title: "",
-    description: "",
-    logo: ""
-  }
+
 }
 
 
@@ -42,22 +37,20 @@ export default Theme
 export const pageQuery =
   graphql`
     query {
-      allSetting {
-        edges {
-          node {
-            value
-            key
-          }
-        }
-      },
       logo: setting(key: {eq: "logo"}) {
-        staticImage {
+        localImage {
           childImageSharp {
             fluid {
               ...GatsbyImageSharpFluid
             }
           }
         }
+      }
+      title: setting(key: {eq: "title"}) {
+        value
+      }
+      description: setting(key: {eq: "description"}) {
+        value
       }
     }
 `
