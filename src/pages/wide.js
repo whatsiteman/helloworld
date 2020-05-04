@@ -9,12 +9,12 @@ const Theme = (props) => {
   return (
     <Layout>
       <div className="content">
-        <Img fluid={logo.staticImage.childImageSharp.fluid} style={{ 'height': '150px', width: '150px', margin: '0 auto 24px ' }} />
+        <Img fluid={logo.localImage.childImageSharp.fluid} style={{ 'height': '150px', width: '150px', margin: '0 auto 24px ' }} />
         <div>
-          {description}
+          {description.value}
         </div>
         <div className="title m-b-md">
-          {title} wide!
+          {title.value} wide!
         </div>
         <div className="links">
           <Link to="/">world</Link>

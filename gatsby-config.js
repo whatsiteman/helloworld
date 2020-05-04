@@ -6,6 +6,7 @@ require("dotenv").config({
   path: `.env.${activeEnv}`,
 })
 
+
 module.exports = {
   pathPrefix: process.env.PREFIX,
   siteMetadata: {
