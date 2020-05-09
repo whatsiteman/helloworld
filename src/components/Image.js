@@ -10,25 +10,31 @@ function Image({ className, alt, src }) {
             allFile {
                 edges {
                     node {
-                    url
-                    childImageSharp {
-                        fluid {
-                            ...GatsbyImageSharpFluid
+                        url
+                        childImageSharp {
+                            fluid {
+                                ...GatsbyImageSharpFluid
+                            }
                         }
-                    }
                     }
                 }
             }
         }
     `);
 
-    const [image, setImage] = useState(null);
+    const [image, setImage] = useState({
+        node: {
+            childImageSharp: {
+                fluid: null
+            }
+        }
+    });
     useEffect(() => {
         const image = allFile.edges.find(
             edge => edge.node.url === src
         )
         setImage(image);
-    }, [allFile, src]);
+    }, [src]);
 
     return (
         <>
