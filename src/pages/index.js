@@ -1,56 +1,24 @@
-import React, { useState, useEffect } from "react"
-import { Link, graphql } from "gatsby"
-import Layout from '../components/Layout'
-import Img from "gatsby-image"
+import React from 'react'
+import { useStaticQuery, graphql } from 'gatsby'
+import { Router } from "@reach/router"
+import Home from "../components/Home"
+import Post from "../components/Post"
 
-const Theme = (props) => {
-  const { title, description, logo } = props.data;
+const IndexPage = () => {
+  const { site } = useStaticQuery(graphql`
+    query {
+      site {
+        pathPrefix
+      }
+    }
+  `);
 
   return (
-    <Layout>
-      <div className="content">
-        <Img fluid={logo.localImage.childImageSharp.fluid} style={{ 'height': '150px', width: '150px', margin: '0 auto 24px ' }} />
-        <div>
-          {description.value}
-        </div>
-        <div className="title m-b-md">
-          {title.value} world!
-        </div>
-        <div className="links">
-          <Link to="/">world</Link>
-          <Link to="/wide">wide</Link>
-          <Link to="/web">web</Link>
-        </div>
-
-      </div>
-    </Layout>
+    <Router basepath={site.pathPrefix}>
+      <Home path="/" /> 
+      <Post path="/posts/:slug" />
+    </Router>
   )
 }
 
-Theme.defaultProps = {
-
-}
-
-
-export default Theme
-
-export const pageQuery =
-  graphql`
-    query {
-      logo: setting(key: {eq: "logo"}) {
-        localImage {
-          childImageSharp {
-            fluid {
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
-      }
-      title: setting(key: {eq: "title"}) {
-        value
-      }
-      description: setting(key: {eq: "description"}) {
-        value
-      }
-    }
-`
+export default IndexPage

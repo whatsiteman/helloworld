@@ -6,13 +6,13 @@ require("dotenv").config({
   path: `.env.${activeEnv}`,
 })
 
-
 module.exports = {
   pathPrefix: process.env.PREFIX,
+  //pathPrefix: '/preview/helloworld',
   siteMetadata: {
     title: `Hello world`,
     description: ``,
-    author: `@whatsiteman`,
+    author: `@whatsiteman`
   },
   plugins: [
     `gatsby-plugin-sass`,
@@ -31,8 +31,33 @@ module.exports = {
           },
           useNullAsDefault: true
         },
-        queryChain: function(x) {
+        queryChain: function (x) {
           return x.select("key", "value").from("settings")
+        }
+      }
+    },
+    {
+      resolve: `gatsby-source-sql`,
+      options: {
+        typeName: 'post',
+        fieldName: 'post',
+        dbEngine: {
+          client: 'sqlite3',
+          connection: {
+            filename: './content/database.sqlite',
+          },
+          useNullAsDefault: false
+        },
+        queryChain: function (x) {
+          return x.select(
+            "title",
+            "slug",
+            'excerpt',
+            'image',
+            'published_at'      
+          )
+            .from("posts")
+            .orderBy('published_at', 'desc')
         }
       }
     },
@@ -41,8 +66,16 @@ module.exports = {
       options: {
         nodeType: 'setting',
         imagePath: 'value',
-        prepareUrl: url => (url.startsWith(process.env.BASE_URL) ? url : process.env.BASE_URL + "images/logo.png"),
+        prepareUrl: url => (url.startsWith(process.env.BASE_URL) ? url : process.env.BASE_URL + "images/example.jpg")
       },
+    },
+    {
+      resolve: `gatsby-plugin-remote-images`,
+      options: {
+        nodeType: 'post',
+        imagePath: 'image',
+        prepareUrl: url => (url.startsWith(process.env.BASE_URL) ? url : process.env.BASE_URL + "images/example.jpg")
+      }
     },
     {
       resolve: `gatsby-plugin-manifest`,

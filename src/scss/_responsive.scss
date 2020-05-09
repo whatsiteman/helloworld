@@ -1,0 +1,138 @@
+@media (max-width: 992px) {
+    #header.full-header .container,
+    .container-fullwidth {
+      padding: 0 15px !important;
+      margin: 0 auto;
+      width: 750px !important;
+    }
+    #header-wrap {
+      height: auto !important;
+    }
+    #logo {
+      display: block;
+      height: 100px;
+      float: none;
+      margin: 0 auto !important;
+      max-width: none;
+      text-align: center;
+      border: 0 !important;
+      padding: 0 !important;
+    }
+    #logo a.brand-logo {
+      display: inline-block;
+    }
+    #primary-menu {
+      display: block;
+      float: none;
+    }
+    #primary-menu-trigger {
+      opacity: 1;
+      pointer-events: auto;
+      top: 25px;
+      margin-top: 0;
+      right: 0;
+      z-index: 1;
+    }
+    #primary-menu > ul {
+      display: none;
+      float: none !important;
+      border: 0 !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      -webkit-transition: none;
+      -o-transition: none;
+      transition: none;
+    }
+    #primary-menu ul li {
+      float: none;
+      margin: 0 !important;
+      text-align: left !important;
+      border-top: 1px solid #eee;
+    }
+    #primary-menu ul > li > a {
+      padding: 14px 5px !important;
+      border: none !important;
+      margin: 0 !important;
+    }
+    #primary-menu ul li:first-child {
+      border-top: 0;
+    }
+  }
+  @media (max-width: 768px) {
+    .pt-20-md {
+      padding-top: 20px !important;
+    }
+    .pt-40-md {
+      padding-top: 40px !important;
+    }
+    .pt-60-md {
+      padding-top: 60px !important;
+    }
+    .pt-100-md {
+      padding-top: 100px !important;
+    }
+    .pb-20-md {
+      padding-bottom: 20px !important;
+    }
+    .pb-40-md {
+      padding-bottom: 40px !important;
+    }
+    .pb-60-md {
+      padding-bottom: 60px !important;
+    }
+    .pb-100-md {
+      padding-bottom: 100px !important;
+    }
+    .portfolio .portfolio-item {
+      width: 50%;
+    }
+  }
+  @media (max-width: 576px) {
+    .pt-20-xs {
+      padding-top: 20px !important;
+    }
+    .pt-40-xs {
+      padding-top: 40px !important;
+    }
+    .pt-60-xs {
+      padding-top: 60px !important;
+    }
+    .pt-100-xs {
+      padding-top: 100px !important;
+    }
+    .pb-20-xs {
+      padding-bottom: 20px !important;
+    }
+    .pb-40-xs {
+      padding-bottom: 40px !important;
+    }
+    .pb-60-xs {
+      padding-bottom: 60px !important;
+    }
+    .pb-100-xs {
+      padding-bottom: 100px !important;
+    }
+  
+    #header.full-header .container,
+    .container,
+    .container-fullwidth {
+      width: 100% !important;
+      padding-left: 40px !important;
+      padding-right: 40px !important;
+    }
+  
+    #primary-menu-trigger {
+      right: 20px;
+    }
+  
+    .emphasis-title h1,
+    .emphasis-title h2 {
+      font-size: 40px !important;
+      line-height: 1.2;
+    }
+  
+    .portfolio .portfolio-item {
+      width: 100%;
+    }
+  }
+  
