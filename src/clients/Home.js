@@ -20,10 +20,9 @@ const HomePage = ({ settings }) => {
     }
   `);
 
-  // const [posts, setPosts] = useState(
-  //   allPost.edges.map(({ node }) => node) || []
-  // );
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState(
+    allPost.edges.map(({ node }) => node) || []
+  );
   useEffect(() => {
     getPosts((resultData) => {
       setPosts(resultData);
