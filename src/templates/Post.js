@@ -9,7 +9,12 @@ const PostTemplate = ({ data, pageContext }) => {
   const { settings } = pageContext;
   return (
     <Layout settings={settings}>
-      <SEO settings={settings} title={post.title} description={post.excerpt} />
+      <SEO
+        settings={settings}
+        title={post.title}
+        description={post.excerpt}
+        className="stretched"
+      />
       <Post settings={settings} post={post} />
     </Layout>
   );

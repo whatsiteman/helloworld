@@ -26,7 +26,7 @@ function Image({ className, alt, src }) {
     (edge) => edge.node.base === path.basename(src)
   );
 
-  return isLocalPreview() ? (
+  return isLocalPreview() && src ? (
     <img className={className} src={src} alt={alt} />
   ) : image ? (
     <Img

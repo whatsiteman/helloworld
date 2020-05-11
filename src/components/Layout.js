@@ -16,12 +16,17 @@ import Image from "./Image";
 import "../scss/styles.scss";
 
 const Layout = ({ settings, children }) => (
-  <div id="warpper">
+  <div id="wrapper">
     <div
       className="content"
       style={{
-        color: settings["color"],
-        backgroundColor: settings["background-color"],
+        color: settings["color"] ? settings["color"] : "none",
+        backgroundColor: settings["background-color"]
+          ? settings["background-color"]
+          : "none",
+        backgroundImage: settings["background"]
+          ? `url(${settings["background-image"]}) center bottom no-repeat`
+          : "none",
       }}
     >
       {settings["logo"] ? (
@@ -49,9 +54,7 @@ const Layout = ({ settings, children }) => (
               <FontAwesomeIcon icon={faFacebook} color="#2d88ff" size="2x" />
             </a>
           </li>
-        ) : (
-          false
-        )}
+        ) : null}
         {settings["youtube"] ? (
           <li>
             <a
@@ -62,9 +65,7 @@ const Layout = ({ settings, children }) => (
               <FontAwesomeIcon icon={faYoutube} color="red" size="2x" />
             </a>
           </li>
-        ) : (
-          false
-        )}
+        ) : null}
         {settings["github"] ? (
           <li>
             <a
@@ -75,9 +76,7 @@ const Layout = ({ settings, children }) => (
               <FontAwesomeIcon icon={faGithub} color="#24292e" size="2x" />
             </a>
           </li>
-        ) : (
-          false
-        )}
+        ) : null}
         {settings["mailto"] ? (
           <li>
             <a
@@ -88,9 +87,7 @@ const Layout = ({ settings, children }) => (
               <FontAwesomeIcon icon={faEnvelope} color="#333" size="2x" />
             </a>
           </li>
-        ) : (
-          false
-        )}
+        ) : null}
         {settings["telephone"] ? (
           <li>
             <a
@@ -101,9 +98,7 @@ const Layout = ({ settings, children }) => (
               <FontAwesomeIcon icon={faPhoneSquareAlt} color="#333" size="2x" />
             </a>
           </li>
-        ) : (
-          false
-        )}
+        ) : null}
       </ul>
       <ul className="copyright">
         <li>

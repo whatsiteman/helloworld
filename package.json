@@ -42,7 +42,6 @@
   ],
   "license": "MIT",
   "scripts": {
-    "preview": "set PREFIX=/preview/helloworld && gatsby build --prefix-paths",
     "deploy": "gatsby build --prefix-paths",
     "build": "gatsby build",
     "develop": "gatsby develop -p 8080",

@@ -7,7 +7,7 @@ require("dotenv").config({
 
 module.exports = {
   pathPrefix: process.env.PREFIX,
-  //pathPrefix: '/preview/helloworld',
+  //pathPrefix: "/preview/helloworld",
   siteMetadata: {
     title: `Hello world`,
     description: ``,

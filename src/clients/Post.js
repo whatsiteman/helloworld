@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Layout from "../components/Layout";
 import SEO from "../components/SEO";
 import Post from "../components/Post";
 import { getPost } from "../service/DataService";
@@ -20,10 +19,15 @@ const PostPage = ({ settings, slug }) => {
   }, [slug]);
 
   return (
-    <Layout settings={settings}>
-      <SEO settings={settings} title={post.title} description={post.excerpt} />
+    <>
+      <SEO
+        settings={settings}
+        title={post.title}
+        description={post.excerpt}
+        className="stretched"
+      />
       <Post settings={settings} post={post} />
-    </Layout>
+    </>
   );
 };
 

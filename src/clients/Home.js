@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link, useStaticQuery, graphql } from "gatsby";
-import Layout from "../components/Layout";
 import Image from "../components/Image";
 import SEO from "../components/SEO";
 import { getPosts } from "../service/DataService";
@@ -32,8 +31,8 @@ const HomePage = ({ settings }) => {
   }, []);
 
   return (
-    <Layout settings={settings}>
-      <SEO settings={settings} title="Home" />
+    <>
+      <SEO settings={settings} title="Home" className="stretched" />
       <section
         className="pt-40"
         style={{ margin: "0 auto", maxWidth: "750px" }}
@@ -70,7 +69,7 @@ const HomePage = ({ settings }) => {
           })}
         </div>
       </section>
-    </Layout>
+    </>
   );
 };
 

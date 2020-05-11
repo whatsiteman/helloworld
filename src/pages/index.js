@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { graphql } from "gatsby";
 import { Router } from "@reach/router";
+import Layout from "../components/Layout";
 import Home from "../clients/Home";
 import Post from "../clients/Post";
 import { isLocalPreview, getSettings } from "../service/DataService";
@@ -20,10 +21,12 @@ const IndexPage = ({ data }) => {
   }, []);
 
   return isLocalPreview() ? (
-    <Router basepath={site.pathPrefix}>
-      <Home settings={settings} path="/" />
-      <Post settings={settings} path="/posts/:slug" />
-    </Router>
+    <Layout settings={settings}>
+      <Router basepath={site.pathPrefix}>
+        <Home settings={settings} path="/" />
+        <Post settings={settings} path="/posts/:slug" />
+      </Router>
+    </Layout>
   ) : (
     <Home settings={settings} />
     // <Post /> Create blog posts dynamic pages at gatsby-node.js
