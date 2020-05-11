@@ -33,7 +33,9 @@ exports.createPages = async ({ graphql, actions }) => {
         (a, x) => ({ ...a, [x.node.key]: x.node.value }),
         {}
       );
-      const posts = result.data.allPost.edges;
+      const posts = result.data.allPost.edges.filter(
+        ({ node }) => node.status === "published"
+      );
       posts.forEach(({ node }, index) => {
         const previous =
           index === posts.length - 1 ? null : posts[index + 1].node;
@@ -60,20 +62,6 @@ exports.onCreatePage = ({ page, actions }) => {
     page.matchPath = `/*`;
     createPage(page);
   }
-};
-
-exports.createResolvers = ({ createResolvers }) => {
-  const resolvers = {
-    Query: {
-      allPost: {
-        type: ["post"],
-        resolve(source, args, context, info) {
-          return context.nodeModel.getAllNodes({ type: "post" }) || [];
-        },
-      },
-    },
-  };
-  createResolvers(resolvers);
 };
 
 exports.createSchemaCustomization = ({ actions }) => {
