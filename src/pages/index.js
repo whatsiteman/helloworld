@@ -28,8 +28,10 @@ const IndexPage = ({ data }) => {
       </Router>
     </Layout>
   ) : (
-    <Home settings={settings} />
-    // <Post /> Create blog posts dynamic pages at gatsby-node.js
+    <Layout settings={settings}>
+      <Home settings={settings} />
+      {/* <Post /> Create blog posts dynamic pages at gatsby-node.js */}
+    </Layout>
   );
 };
 

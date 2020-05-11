@@ -22,7 +22,7 @@ const HomePage = ({ settings }) => {
   `);
 
   const [posts, setPosts] = useState(
-    allPost.edges.map(({ node }) => node) || []
+    allPost.edges ? allPost.edges.map(({ node }) => node) : []
   );
   useEffect(() => {
     getPosts((resultData) => {
