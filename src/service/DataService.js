@@ -24,7 +24,7 @@ export const getSettings = (callback) => {
 export const getPosts = (callback) => {
   if (isLocalPreview())
     window.axios.get(`user/repos/${getCurrentRepo().name}/posts`).then((r) => {
-      callback(r.data);
+      callback(r.data.filter((x) => x.status === "published"));
     });
 };
 

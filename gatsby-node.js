@@ -62,6 +62,20 @@ exports.onCreatePage = ({ page, actions }) => {
   }
 };
 
+exports.createResolvers = ({ createResolvers }) => {
+  const resolvers = {
+    Query: {
+      allPost: {
+        type: ["post"],
+        resolve(source, args, context, info) {
+          return context.nodeModel.getAllNodes({ type: "post" }) || [];
+        },
+      },
+    },
+  };
+  createResolvers(resolvers);
+};
+
 exports.createSchemaCustomization = ({ actions }) => {
   const { createTypes } = actions;
   const typeDefs = `
