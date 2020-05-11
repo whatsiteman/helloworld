@@ -21,7 +21,9 @@ const HomePage = ({ settings }) => {
   `);
 
   const [posts, setPosts] = useState(
-    allPost.edges.map(({ node }) => node) || []
+    allPost.edges
+      .filter(({ node }) => node.status === "published")
+      .map(({ node }) => node) || []
   );
   useEffect(() => {
     getPosts((resultData) => {
