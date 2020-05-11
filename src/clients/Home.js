@@ -14,6 +14,7 @@ const HomePage = ({ settings }) => {
             slug
             excerpt
             image
+            status
           }
         }
       }
