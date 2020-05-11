@@ -23,7 +23,9 @@ exports.createPages = async ({ graphql, actions }) => {
         }
       }
     }
-  `);
+  `).catch((err) => {
+    console.error(err);
+  });
 
   if (result.data) {
     const postTemplate = path.resolve(`./src/templates/Post.js`);
