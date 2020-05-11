@@ -1,46 +1,40 @@
-import React, { useEffect, useState } from 'react'
-import { useStaticQuery, graphql } from 'gatsby';
-import { isLocalPreview } from '../service/DataService'
-import Img from "gatsby-image"
+import React from "react";
+import { useStaticQuery, graphql } from "gatsby";
+import { isLocalPreview } from "../service/DataService";
+import Img from "gatsby-image";
+import path from "path";
 
 function Image({ className, alt, src }) {
-
-    const { allFile } = useStaticQuery(graphql`
-        query {
-            allFile {
-                edges {
-                    node {
-                        url
-                        childImageSharp {
-                            fluid {
-                                ...GatsbyImageSharpFluid
-                            }
-                        }
-                    }
-                }
+  const { allFile } = useStaticQuery(graphql`
+    query {
+      allFile {
+        edges {
+          node {
+            base
+            childImageSharp {
+              fluid {
+                ...GatsbyImageSharpFluid
+              }
             }
+          }
         }
-    `);
+      }
+    }
+  `);
 
-    const [image, setImage] = useState({
-        node: {
-            childImageSharp: {
-                fluid: null
-            }
-        }
-    });
-    useEffect(() => {
-        const image = allFile.edges.find(
-            edge => edge.node.url === src
-        )
-        setImage(image);
-    }, [src]);
+  const image = allFile.edges.find(
+    (edge) => edge.node.base === path.basename(src)
+  );
 
-    return (
-        <>
-            {isLocalPreview() ? < img className={className} src={src} alt={alt} />
-                : <Img className={className} alt={alt} fluid={image.node.childImageSharp.fluid} />}
-        </>
-    );
+  return isLocalPreview() ? (
+    <img className={className} src={src} alt={alt} />
+  ) : image ? (
+    <Img
+      className={className}
+      alt={alt}
+      fluid={image.node.childImageSharp.fluid}
+    />
+  ) : null;
 }
-export default Image
+
+export default Image;
