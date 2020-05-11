@@ -35,16 +35,16 @@ exports.createPages = async ({ graphql, actions }) => {
     {}
   );
   const posts = result.data.allPost.edges;
-  posts.forEach((post, index) => {
+  posts.forEach(({ node }, index) => {
     const previous = index === posts.length - 1 ? null : posts[index + 1].node;
     const next = index === 0 ? null : posts[index - 1].node;
 
     createPage({
-      path: "/posts/" + post.node.slug,
+      path: "/posts/" + node.slug,
       component: postTemplate,
       context: {
         settings,
-        slug: post.node.slug,
+        slug: node.slug,
         previous,
         next,
       },
@@ -70,6 +70,7 @@ exports.createSchemaCustomization = ({ actions }) => {
         slug: String!
         excerpt: String
         image: String
+        html: String
         published_at: String
       }
     `;

@@ -10,7 +10,6 @@ const HomePage = ({ settings }) => {
       allPost {
         edges {
           node {
-            id
             title
             slug
             excerpt
@@ -21,9 +20,10 @@ const HomePage = ({ settings }) => {
     }
   `);
 
-  const [posts, setPosts] = useState(
-    allPost.edges ? allPost.edges.map(({ node }) => node) : []
-  );
+  // const [posts, setPosts] = useState(
+  //   allPost.edges.map(({ node }) => node) || []
+  // );
+  const [posts, setPosts] = useState([]);
   useEffect(() => {
     getPosts((resultData) => {
       setPosts(resultData);
