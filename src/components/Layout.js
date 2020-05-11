@@ -24,7 +24,7 @@ const Layout = ({ settings, children }) => (
         backgroundColor: settings["background-color"]
           ? settings["background-color"]
           : "none",
-        backgroundImage: settings["background"]
+        background: settings["background-image"]
           ? `url(${settings["background-image"]}) center bottom no-repeat`
           : "none",
       }}

@@ -41,7 +41,6 @@ const Post = ({ post }) => {
 
   return (
     <section>
-      <Image className="blog-post-header" src={post.image} alt={post.title} />
       <div
         style={{
           marginLeft: "auto",
@@ -55,6 +54,11 @@ const Post = ({ post }) => {
             <h1 className="nobottommargin">{post.title}</h1>
             <p>{post.excerpt}</p>
           </header>
+          <Image
+            className="blog-post-header"
+            src={post.image}
+            alt={post.title}
+          />
           <hr />
           <section dangerouslySetInnerHTML={{ __html: html }} />
         </article>

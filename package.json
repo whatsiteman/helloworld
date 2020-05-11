@@ -46,7 +46,7 @@
     "build": "gatsby build",
     "develop": "gatsby develop -p 8080",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
-    "start": "SET PREFIX=/ | npm run develop",
+    "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
