@@ -20,6 +20,7 @@ exports.createPages = async ({ graphql, actions }) => {
               slug
               excerpt
               image
+              status
             }
           }
         }
@@ -74,6 +75,7 @@ exports.createSchemaCustomization = ({ actions }) => {
         image: String
         html: String
         published_at: String
+        status: String
       }
     `;
   createTypes(typeDefs);
